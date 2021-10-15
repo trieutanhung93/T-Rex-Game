@@ -3,9 +3,26 @@
     <head>
         <meta charset="utf-8" />
         <title>T-Rex Game</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            canvas {
+                display: block;
+            }
+
+            #game {
+                width: 640px;
+                height: 400px;
+                border: 1px solid black;
+            }
+        </style> 
     </head>
     <body>
-        <canvas id="t-rex-runner" width="800px" height="600px"></canvas>
+        <canvas id="game"></canvas>
         <script type="module" src="./dist/main.js"></script>
-    </body>  
+    </body> 
 </html>
