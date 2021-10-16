@@ -1,6 +1,6 @@
-import {canvas, ctx} from '../index';
+import { Canvas } from "../abstracts/canvas";
 
-export class Score {
+export class Text {
     t: string; //text
     x: number; //x
     y: number; //y
@@ -19,11 +19,11 @@ export class Score {
     }
 
     draw(){
-        ctx.beginPath();
-        ctx.fillStyle = this.c;
-        ctx.font = this.s + "px sans-serif";
-        ctx.textAlign = this.a;
-        ctx.fillText(this.t, this.x, this.y);
-        ctx.closePath();
+        Canvas.ctx.beginPath();
+        Canvas.ctx.fillStyle = this.c;
+        Canvas.ctx.font = this.s + "px sans-serif";
+        Canvas.ctx.textAlign = this.a;
+        Canvas.ctx.fillText(this.t, this.x, this.y);
+        Canvas.ctx.closePath();
     }
 }

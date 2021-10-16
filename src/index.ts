@@ -1,25 +1,10 @@
-const canvas = <HTMLCanvasElement> document.getElementById('game');
-const ctx = canvas.getContext('2d');
+import { Canvas } from './abstracts/canvas';
+import { Control } from './abstracts/control';
+import {Player, Cactus, Brid, Cloud, Text} from './objects/exports';
 
-import {Player, Cactus, Brid, Cloud, Score} from './objects/exports';
 
-let player: any;
-let gravity: number;
-let keys = {};
-let scoreText: any;
-let score: number;
-let castus: any;
-let cloud: any;
-let clouds = [];
-let bird: any;
-let obstacles = [];
-let initialSpawnTimer = 200;
-let spawnTimer = initialSpawnTimer;
-let gameSpeed: number;
+Canvas.init(<HTMLCanvasElement> document.getElementById('game'));
 
-let sprite = new Image();
-sprite.src = './img/200-offline-sprite.png';
+let control = new Control();
+control.handleInput();
 
-console.log(sprite);
-
-export { canvas, ctx, sprite, gravity, gameSpeed, keys, cloud, clouds }
