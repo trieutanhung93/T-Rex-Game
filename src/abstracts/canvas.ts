@@ -3,8 +3,10 @@ export class Canvas {
     static height: number;
     static ctx: CanvasRenderingContext2D;
     static init(el: HTMLCanvasElement){
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
+        el.width = window.innerWidth;
+        el.height = window.innerHeight;
+        this.width = el.width;
+        this.height = el.height;
         Canvas.ctx = el.getContext('2d');
     }
 }

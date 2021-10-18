@@ -3,50 +3,54 @@ import { Canvas } from '../abstracts/canvas';
 import { Control } from '../abstracts/control';
 
 export class Player extends GameObject{
+    
     urlImg: string;
     image = new Image();
-
-    sx: number;
-    sy: number;
-    sw: number;
-    sh: number;
 
     dy: number;
     jumpForce: number;
     grounded: boolean;
     originalHeight: number;
+    originalWeight: number;
     jumpTimer: number;
     isBow: boolean;
-
+    ground: number;
+    gravity: number;
     constructor(x: number, y: number ,w: number, h: number) {
         super(x, y, w, h);
         
-        this.urlImg = './img/200-offline-sprite.png'
+        this.urlImg = './img/trex-1.png';
         this.image.src= this.urlImg;
 
-        this.sx = 75;
-        this.sy = 0;
-        this.sw = 85;
-        this.sh = 100;
+        this.originalHeight = this.h;
+        this.originalWeight = this.w;
 
-        this.dy = 0;
-        this.jumpForce = 15;
         this.grounded = false;
-        this.originalHeight = this.y;
+        this.ground= 54;
+
+        this.jumpForce = 15;       
         this.jumpTimer =0;
+
         this.isBow = false;
+        this.dy = 0;
+        this.gravity = 1;
     }
     draw(){
         Canvas.ctx.beginPath();
         if(this.isBow == false){
-            Canvas.ctx.drawImage(this.image, this.sx, this.sy, this.sw, this.sh, this.x, this.y, this.w, this.h);
+            this.urlImg = './img/trex-1.png';
+            this.image.src= this.urlImg;
+            Canvas.ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
         }
         else{
-            Canvas.ctx.drawImage(this.image, this.sx, this.sy, this.sw, this.sh, this.x, this.y, this.w, this.h);
+            this.urlImg = './img/trex-2.png';
+            this.image.src= this.urlImg;
+            Canvas.ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
         }
         Canvas.ctx.closePath()
     }
     update(){
+        //console.log("Player : update");
         if (Control.keys['Space'] || Control.keys['KeyW'] || Control.keys['ArrowUp']) {
             this.jump();
         } 
@@ -56,23 +60,24 @@ export class Player extends GameObject{
 
         if (Control.keys['ArrowDown'] || Control.keys['KeyS']) {
             this.isBow = true;
-            this.h = this.originalHeight / 2;
+            this.h = this.originalHeight *3/4;
         } 
         else {
             this.isBow = false;
             this.h = this.originalHeight;
+            this.w = this.originalWeight;
         }
 
         this.y+=this.dy;
 
-        if(this.y+this.h<Canvas.canvas.height){
-            this.dy += 1; //gravity
+        if(this.y + this.h <Canvas.height -this.ground){
+            this.dy += this.gravity;
             this.grounded=false;
         }
         else{
             this.dy=0;
             this.grounded=true;
-            this.y=Canvas.canvas.height-this.h;
+            this.y=Canvas.height-this.h -this.ground;
         }
 
         this.draw();

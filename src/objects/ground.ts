@@ -1,7 +1,7 @@
 import {GameObject} from '../abstracts/gameObject'
 import { Canvas } from '../abstracts/canvas';
 
-export class Brid extends GameObject{
+export class Ground extends GameObject{
 
     urlImg: string;
     image = new Image();
@@ -12,7 +12,7 @@ export class Brid extends GameObject{
     constructor(x: number, y: number, w: number, h: number){
         super(x, y, w,h);
         
-        this.urlImg = './img/brid.png'
+        this.urlImg = './img/ground.png'
         this.image.src= this.urlImg;
 
         this.dx = - 10;
