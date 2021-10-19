@@ -1,15 +1,7 @@
-# 🚀 Welcome to your new awesome project!
+# T-Rex Game
 
-This project has been created using **webpack-cli**, you can now run
-
-```
-npm run build
-```
-
-or
+# Run game
 
 ```
-yarn build
+npx server
 ```
-
-to bundle your application
