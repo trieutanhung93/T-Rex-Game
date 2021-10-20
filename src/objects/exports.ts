@@ -1,9 +1,10 @@
-import { Player } from "./player";
-import { Cactus } from "./cactus";
-import { Brid } from "./brid";
-import { Cloud } from "./clouds";
-import { Text } from "./Text";
-import { Ground } from "./ground";
-import { Button } from "./button";
+import { Player } from "./Player";
+import { Cactus } from "./Cactus";
+import { Brid } from "./Brid";
+import { Cloud } from "./Clouds";
+import { Score } from "./Score";
+import { Label } from "./Label";
+import { Ground } from "./Ground";
+import { Button } from "./Button";
 
-export {Player, Cactus, Brid, Cloud, Text, Ground, Button};
+export {Player, Cactus, Brid, Cloud, Score, Label, Ground, Button};

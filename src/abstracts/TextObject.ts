@@ -1,23 +1,18 @@
-import { Canvas } from "../abstracts/canvas";
+import { Canvas } from "./Canvas";
+import { GameObject } from "./GameObject";
 
-export class Text {
+export class Text extends GameObject{
     t: string; //text
-    x: number; //x
-    y: number; //y
     a: CanvasTextAlign; //align
     c: string; //color
     s: string; //size
-
-    
     constructor(text: string, x: number, y: number, a: CanvasTextAlign, c: string, s: string){
+        super(x, y, 0, 0);
         this.t = text;
-        this.x = x;
-        this.y = y;
         this.a = a;
         this.c = c;
         this.s = s;
     }
-
     draw(){
         Canvas.ctx.beginPath();
         Canvas.ctx.fillStyle = this.c;

@@ -1,13 +1,12 @@
-import {Canvas} from "../abstracts/canvas";
-import { GameObject } from "../abstracts/gameObject";
-import { SceneManager } from "../abstracts/sceneManager";
-import {Brid, Cactus, Cloud, Ground, Player, Text} from "../objects/exports";
-import { GameOverScene } from "./gameOverScene";
+import {Canvas} from "../abstracts/Canvas";
+import { SceneManager } from "../abstracts/SceneManager";
+import { GameOverScene } from "./GameOverScene";
+import {Brid, Button, Cactus, Cloud, Ground, Player, Score, Label} from '../objects/exports';
 
 export class PlayGameScene extends Screen{
     
-    scoreText: Text;
-    highscoreText: Text;
+    scoreText: Score;
+    highscoreText: Score;
     score: number;
     highscore: number;
 
@@ -26,14 +25,14 @@ export class PlayGameScene extends Screen{
     obstacles = [];
 
     constructor(){
-       // super();
-        this.scoreText = new Text("Score: 0", 25, 25, "left", "#212121", "20");
+        //super();
+        this.scoreText = new Score("Score: 0", 25, 25);
         this.highscore = 0;
         this.score = 0;
         if (localStorage.getItem('highscore')) {
             this.highscore = Number(localStorage.getItem('highscore'));
         }
-        this.highscoreText = new Text("Highscore: " + this.highscore, Canvas.width - 25, 25, "right", "#212121", "20");
+        this.highscoreText = new Score("Highscore: " + this.highscore, Canvas.width - 200, 25);
         this.player = new Player(25,Canvas.height - 150,100,100); 
         this.ground = new Ground(0, Canvas.height - 54, Canvas.width, 10);
 
@@ -135,5 +134,6 @@ export class PlayGameScene extends Screen{
         }
 
         this.player.update();
+        //this.ground.update();
     }
 }

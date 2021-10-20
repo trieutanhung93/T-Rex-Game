@@ -1,30 +1,18 @@
-import {GameObject} from '../abstracts/gameObject'
-import { Canvas } from '../abstracts/canvas';
+import { ImageObject } from '../abstracts/ImageObject';
 
-export class Cloud extends GameObject{
-
-    urlImg: string;
-    image = new Image();
+export class Cloud extends ImageObject{
 
     dx: number;
 
     constructor(x: number, y: number, w: number, h: number){
-        super(x, y, w, h);
-
-        this.urlImg = './img/cloud.png'
-        this.image.src= this.urlImg;
+        super('./img/cloud.png', x, y, w, h);
 
         this.dx = -20;
     }
     draw(){
-        //console.log("Cloud: draw");
-        //console.log(this.x, this.y, this.w, this.h);
-        Canvas.ctx.beginPath();
-        Canvas.ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
-        Canvas.ctx.closePath();
+        super.draw();
     }
     update(){
-        //console.log("Cloud: update")
         this.x += this.dx;
         this.draw()
     }

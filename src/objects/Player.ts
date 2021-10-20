@@ -1,8 +1,8 @@
-import {GameObject} from '../abstracts/gameObject'
-import { Canvas } from '../abstracts/canvas';
-import { Control } from '../abstracts/control';
+import { Canvas } from '../abstracts/Canvas';
+import { Control } from '../abstracts/Control';
+import { ImageObject } from '../abstracts/ImageObject';
 
-export class Player extends GameObject{
+export class Player extends ImageObject{
     
     urlImg: string;
     image = new Image();
@@ -17,10 +17,7 @@ export class Player extends GameObject{
     ground: number;
     gravity: number;
     constructor(x: number, y: number ,w: number, h: number) {
-        super(x, y, w, h);
-        
-        this.urlImg = './img/trex-1.png';
-        this.image.src= this.urlImg;
+        super('./img/trex-1.png', x, y, w, h);
 
         this.originalHeight = this.h;
         this.originalWeight = this.w;

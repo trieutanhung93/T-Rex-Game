@@ -1,11 +1,9 @@
-import { Canvas } from './abstracts/canvas';
-import { Control } from './abstracts/control';
-import {Player, Cactus, Brid, Cloud, Text, Ground} from './objects/exports';
-import { Game } from './objects/game';
-import { MainMenuScene } from './scenes/mainMenuScene';
-import { PlayGameScene } from './scenes/playGameScene';
-import { GameOverScene } from './scenes/gameOverScene';
-import { Scene } from './abstracts/scene';
+import { Canvas } from './abstracts/Canvas';
+import { Control } from './abstracts/Control';
+import { Game } from './objects/Game';
+import { MainMenuScene } from './scenes/MainMenuScene';
+import { PlayGameScene } from './scenes/PlayGameScene';
+import { GameOverScene } from './scenes/GameOverScene';
 
 Canvas.init(<HTMLCanvasElement> document.getElementById('game'));
 

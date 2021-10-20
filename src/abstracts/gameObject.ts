@@ -10,5 +10,4 @@ export abstract class GameObject{
         this.h = h;
     }
     abstract draw(): void;
-    abstract update(): void;
 }

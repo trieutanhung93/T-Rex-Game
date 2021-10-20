@@ -1,5 +1,5 @@
-import { Scene } from "../abstracts/scene";
-import { SceneManager } from "../abstracts/sceneManager";
+import { Scene } from "../abstracts/Scene";
+import { SceneManager } from "../abstracts/SceneManager";
 
 export class Game{
 

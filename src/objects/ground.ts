@@ -1,30 +1,19 @@
-import {GameObject} from '../abstracts/gameObject'
-import { Canvas } from '../abstracts/canvas';
+import { ImageObject } from '../abstracts/ImageObject';
 
-export class Ground extends GameObject{
-
-    urlImg: string;
-    image = new Image();
+export class Ground extends ImageObject{
 
     dx: number;
-    canvas: Canvas;
 
     constructor(x: number, y: number, w: number, h: number){
-        super(x, y, w,h);
-        
-        this.urlImg = './img/ground.png'
-        this.image.src= this.urlImg;
+        super('./img/ground.png', x, y, w,h);
 
-        this.dx = - 10;
+        this.dx = - 1;
     }
     draw(){
-        Canvas.ctx.beginPath();
-        Canvas.ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
-        Canvas.ctx.closePath();
+        super.draw();
     }
     update(){
         this.x += this.dx;
         this.draw();
-        this.dx = -10;
     }
 }

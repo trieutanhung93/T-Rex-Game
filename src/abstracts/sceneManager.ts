@@ -1,4 +1,4 @@
-import { Scene } from "../abstracts/scene";
+import { Scene } from "../abstracts/Scene";
 
 export class SceneManager{
     static currentScene: Scene;
