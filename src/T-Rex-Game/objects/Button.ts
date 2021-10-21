@@ -1,19 +1,18 @@
-import {ImageObject} from '../abstracts/ImageObject';
+import { ImageObject } from "../../Engine/ImageObject";
 
-export class Brid extends ImageObject{
+export class Button extends ImageObject{
 
     dx: number;
 
     constructor(x: number, y: number, w: number, h: number){
-        super('./img/brid.png',x, y, w,h);
+        super('./img/gameOver.png', x, y, w,h);
 
         this.dx = - 10;
     }
     draw(){
         super.draw();
-    } 
+    }
     update(){
-        this.x += this.dx;
         this.draw();
     }
 }

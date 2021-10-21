@@ -1,7 +1,7 @@
 import { Canvas } from "./Canvas";
 import { GameObject } from "./GameObject";
 
-export class Text extends GameObject{
+export class TextObject extends GameObject{
     t: string; //text
     a: CanvasTextAlign; //align
     c: string; //color

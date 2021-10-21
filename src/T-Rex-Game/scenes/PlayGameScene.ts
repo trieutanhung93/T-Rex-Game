@@ -1,9 +1,10 @@
-import {Canvas} from "../abstracts/Canvas";
-import { SceneManager } from "../abstracts/SceneManager";
-import { GameOverScene } from "./GameOverScene";
+import { Canvas } from "../../Engine/Canvas";
+import { Scene } from "../../Engine/Scene";
+import { SceneManager } from "../../Engine/SceneManager";
+import { GameOverScene } from "./exports";
 import {Brid, Button, Cactus, Cloud, Ground, Player, Score, Label} from '../objects/exports';
 
-export class PlayGameScene extends Screen{
+export class PlayGameScene extends Scene{
     
     scoreText: Score;
     highscoreText: Score;
@@ -25,7 +26,7 @@ export class PlayGameScene extends Screen{
     obstacles = [];
 
     constructor(){
-        //super();
+        super();
         this.scoreText = new Score("Score: 0", 25, 25);
         this.highscore = 0;
         this.score = 0;

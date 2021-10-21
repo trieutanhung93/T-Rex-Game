@@ -1,4 +1,4 @@
-import { ImageObject } from '../abstracts/ImageObject';
+import { ImageObject } from "../../Engine/ImageObject";
 
 export class Cloud extends ImageObject{
 

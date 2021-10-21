@@ -1,10 +1,11 @@
-import {Canvas} from "../abstracts/Canvas";
-import { Control } from "../abstracts/Control";
-import { SceneManager } from "../abstracts/SceneManager";
-import { PlayGameScene } from "./PlayGameScene";
+import { Canvas } from "../../Engine/Canvas";
+import { Control } from "../../Engine/Control";
+import { Scene } from "../../Engine/Scene";
+import { SceneManager } from "../../Engine/SceneManager";
+import { PlayGameScene } from "./exports";
 import {Brid, Button, Cactus, Cloud, Ground, Player, Score, Label} from '../objects/exports';
 
-export class MainMenuScene extends Screen{
+export class MainMenuScene extends Scene{
     
     startText: Label;
 
@@ -16,7 +17,7 @@ export class MainMenuScene extends Screen{
     player: Player;
 
     constructor(){
-        //super();
+        super();
         this.startText = new Label("PRESS SPACE TO START GAME", Canvas.width / 2 + 45, Canvas.height / 2 - 20);
         this.scoreText = new Score("Score: 0", 25, 25);
         this.highscore = 0;

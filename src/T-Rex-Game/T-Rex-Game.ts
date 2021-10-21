@@ -1,7 +1,7 @@
-import { Scene } from "../abstracts/Scene";
-import { SceneManager } from "../abstracts/SceneManager";
+import { Scene } from "../Engine/Scene";
+import { SceneManager } from "../Engine/SceneManager";
 
-export class Game{
+export class T_Rex_Game{
 
     sceneManager: SceneManager;
     lastTime: number;

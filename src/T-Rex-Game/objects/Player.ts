@@ -1,6 +1,6 @@
-import { Canvas } from '../abstracts/Canvas';
-import { Control } from '../abstracts/Control';
-import { ImageObject } from '../abstracts/ImageObject';
+import { Canvas } from '../../Engine/Canvas';
+import { Control } from '../../Engine/Control';
+import { ImageObject } from "../../Engine/ImageObject";
 
 export class Player extends ImageObject{
     

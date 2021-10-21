@@ -1,17 +1,17 @@
-import { ImageObject } from '../abstracts/ImageObject';
+import { ImageObject } from "../../Engine/ImageObject";
 
-export class Ground extends ImageObject{
+export class Brid extends ImageObject{
 
     dx: number;
 
     constructor(x: number, y: number, w: number, h: number){
-        super('./img/ground.png', x, y, w,h);
+        super('./img/brid.png',x, y, w,h);
 
-        this.dx = - 1;
+        this.dx = - 10;
     }
     draw(){
         super.draw();
-    }
+    } 
     update(){
         this.x += this.dx;
         this.draw();
