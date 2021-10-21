@@ -1,18 +1,17 @@
+import { Game } from "../Engine/Game";
 import { Scene } from "../Engine/Scene";
 import { SceneManager } from "../Engine/SceneManager";
 
-export class T_Rex_Game{
+export class T_Rex_Game extends Game{
 
-    sceneManager: SceneManager;
     lastTime: number;
     
     constructor(){
-        this.sceneManager = new SceneManager;
+        super();
     }
 
     addScene(scene: Scene){
-        console.log("Game: addScene");
-        this.sceneManager.addScene(scene);
+        super.addScene(scene);
     }
 
     start(){
