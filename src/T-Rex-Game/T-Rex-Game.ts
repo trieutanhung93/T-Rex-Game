@@ -1,4 +1,4 @@
-import { CanvasRender } from "../Engine/CanvasRender";
+import { Canvas } from "../Engine/Canvas";
 import { Game } from "../Engine/Game";
 import { Scene } from "../Engine/Scene";
 import { SceneManager } from "../Engine/SceneManager";
@@ -6,11 +6,9 @@ import { SceneManager } from "../Engine/SceneManager";
 export class T_Rex_Game extends Game{
 
     lastTime: number;
-    render: CanvasRender;
 
-    constructor(){
-        super();
-        this.render = new CanvasRender();
+    constructor(config){
+        super(config);
     }
 
     addScene(scene: Scene){
@@ -24,8 +22,8 @@ export class T_Rex_Game extends Game{
         this.lastTime = time;
 
         let scene = SceneManager.currentScene;
+        this.renderer.render(scene);
         scene.update(time, delta);
-        this.render.render(scene);
         requestAnimationFrame(() => {
             this.start();
         });

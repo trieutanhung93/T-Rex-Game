@@ -9,11 +9,7 @@ export class Cactus extends ImageObject{
 
         this.dx = - 10;
     }
-    draw(){
-        super.draw();
-    } 
     update(){
         this.x += this.dx;
-        this.draw();
     }
 }

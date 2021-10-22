@@ -9,11 +9,8 @@ export class Cloud extends ImageObject{
 
         this.dx = -20;
     }
-    draw(){
-        super.draw();
-    }
+    
     update(){
         this.x += this.dx;
-        this.draw()
     }
 }

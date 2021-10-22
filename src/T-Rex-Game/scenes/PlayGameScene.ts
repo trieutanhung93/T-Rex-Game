@@ -35,9 +35,9 @@ export class PlayGameScene extends Scene{
         if (localStorage.getItem('highscore')) {
             this.highscore = Number(localStorage.getItem('highscore'));
         }
-        this.highscoreText = new Score("Highscore: " + this.highscore, Canvas.width - 200, 25);
-        this.player = new Player(25,Canvas.height - 150,100,100); 
-        this.ground = new Ground(0, Canvas.height - 54, Canvas.width, 10);
+        this.highscoreText = new Score("Highscore: " + this.highscore, Canvas.configs.width - 200, 25);
+        this.player = new Player(25,Canvas.configs.height - 150,100,100); 
+        this.ground = new Ground(0, Canvas.configs.height - 54, Canvas.configs.width, 10);
 
         this.cactus = new Cactus(4000, 4000, 50, 120);
         this.brid = new Brid(4000, 4000, 120, 70);
@@ -55,18 +55,18 @@ export class PlayGameScene extends Scene{
     }
 
     swapCloud(){
-        this.cloud = new Cloud(Canvas.width, Canvas.height - 300, 120, 70);
+        this.cloud = new Cloud(Canvas.configs.width, Canvas.configs.height - 300, 120, 70);
         this.clouds. push(this.cloud);
     }
 
     swapObstacle(){
         let type: number = this.random(0,2);
         if(type == 0){
-            this.brid = new Brid(Canvas.width + 50, Canvas.height - 200, 120, 70);
+            this.brid = new Brid(Canvas.configs.width + 50, Canvas.configs.height - 200, 120, 70);
             this.obstacles.push(this.brid);
         }
         else{
-            this.cactus = new Cactus(Canvas.width + 50, Canvas.height - 170, 50, 120);
+            this.cactus = new Cactus(Canvas.configs.width + 50, Canvas.configs.height - 170, 50, 120);
             this.obstacles.push(this.cactus);
         }
     }
@@ -76,7 +76,8 @@ export class PlayGameScene extends Scene{
     }
 
     update(time: number, delta: number){
-        Canvas.ctx.clearRect(0, 0, Canvas.width, Canvas.height);
+
+        Canvas.ctx.clearRect(0, 0, Canvas.configs.width, Canvas.configs.height);
 
         //score;
         this.score ++;
@@ -85,8 +86,8 @@ export class PlayGameScene extends Scene{
             this.highscore = this.score;
             this.highscoreText.t = "Highscore: " + this.highscore;
         }
-        this.scoreText.draw();
-        this.highscoreText.draw();
+        Canvas.renderText(this.scoreText);
+        Canvas.renderText(this.highscoreText);
 
         // Spawn clouds and obstacles
         this.spawnTimer --;
@@ -106,6 +107,7 @@ export class PlayGameScene extends Scene{
                 this.clouds.slice(i, 1);
             }
             o.update();
+            Canvas.renderImage(o);
         }
         for(let i =0; i < this.obstacles.length; i++){
             console.log()
@@ -130,9 +132,12 @@ export class PlayGameScene extends Scene{
                 SceneManager.currentScene = new GameOverScene();
             }
             o.update();
+            Canvas.renderImage(o);
         }
 
         this.player.update();
+        Canvas.renderImage(this.player);
+        Canvas.renderImage(this.ground);
         //this.ground.update();
     }
 }

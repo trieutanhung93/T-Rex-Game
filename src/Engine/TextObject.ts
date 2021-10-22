@@ -13,12 +13,4 @@ export class TextObject extends GameObject{
         this.c = c;
         this.s = s;
     }
-    draw(){
-        Canvas.ctx.beginPath();
-        Canvas.ctx.fillStyle = this.c;
-        Canvas.ctx.font = this.s + "px sans-serif";
-        Canvas.ctx.textAlign = this.a;
-        Canvas.ctx.fillText(this.t, this.x, this.y);
-        Canvas.ctx.closePath();
-    }
 }

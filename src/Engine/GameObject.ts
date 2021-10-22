@@ -9,5 +9,4 @@ export abstract class GameObject{
         this.w = w;
         this.h = h;
     }
-    abstract draw(): void;
 }

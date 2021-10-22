@@ -14,8 +14,8 @@ export class GameOverScene extends Scene{
 
     constructor(){
         super();
-        this.gameOverText = new Label("Game Over", Canvas.width / 2 + 10, Canvas.height / 2 - 70);
-        this.gameOverButton = new Button(Canvas.width / 2 - 50, Canvas.height / 2 - 50, 100, 100);
+        this.gameOverText = new Label("Game Over", Canvas.configs.width / 2 + 10, Canvas.configs.height / 2 - 70);
+        this.gameOverButton = new Button(Canvas.configs.width / 2 - 50, Canvas.configs.height / 2 - 50, 100, 100);
 
         this.objectList.push(this.gameOverButton);
         this.objectList.push(this.gameOverText);

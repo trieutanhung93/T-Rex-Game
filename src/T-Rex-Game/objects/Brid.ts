@@ -9,11 +9,7 @@ export class Brid extends ImageObject{
 
         this.dx = - 10;
     }
-    draw(){
-        super.draw();
-    } 
     update(){
         this.x += this.dx;
-        this.draw();
     }
 }

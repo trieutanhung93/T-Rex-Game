@@ -9,11 +9,8 @@ export class Ground extends ImageObject{
 
         this.dx = - 1;
     }
-    draw(){
-        super.draw();
-    }
+
     update(){
         this.x += this.dx;
-        this.draw();
     }
 }

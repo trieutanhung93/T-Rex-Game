@@ -4,7 +4,4 @@ export class Score extends TextObject {
     constructor(text: string, x: number, y: number){
         super(text, x, y, "left", "#212121", "20");
     }
-    draw(){
-        super.draw();
-    }
 }

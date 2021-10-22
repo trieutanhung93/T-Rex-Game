@@ -9,10 +9,8 @@ export class Button extends ImageObject{
 
         this.dx = - 10;
     }
-    draw(){
-        super.draw();
-    }
+    
     update(){
-        this.draw();
+       
     }
 }

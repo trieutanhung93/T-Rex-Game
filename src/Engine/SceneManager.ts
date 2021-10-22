@@ -5,12 +5,10 @@ export class SceneManager{
     static scenes: Scene[] =[];
 
     addScene(scene: Scene){
-        //console.log("SceneManager: addScene")
         SceneManager.scenes.push(scene);
         if(SceneManager.scenes.length == 1){
             SceneManager.currentScene = scene;
         }
-        //console.log(SceneManager.currentScene);
     }
 
     findSceneIndex(scene: Scene): any {

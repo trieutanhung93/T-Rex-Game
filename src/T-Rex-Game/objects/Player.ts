@@ -33,18 +33,12 @@ export class Player extends ImageObject{
         this.gravity = 1;
     }
     draw(){
-        Canvas.ctx.beginPath();
         if(this.isBow == false){
             this.urlImg = './img/trex-1.png';
-            this.image.src= this.urlImg;
-            Canvas.ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
         }
         else{
             this.urlImg = './img/trex-2.png';
-            this.image.src= this.urlImg;
-            Canvas.ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
         }
-        Canvas.ctx.closePath()
     }
     update(){
         //console.log("Player : update");
@@ -67,17 +61,15 @@ export class Player extends ImageObject{
 
         this.y+=this.dy;
 
-        if(this.y + this.h <Canvas.height -this.ground){
+        if(this.y + this.h <Canvas.configs.height -this.ground){
             this.dy += this.gravity;
             this.grounded=false;
         }
         else{
             this.dy=0;
             this.grounded=true;
-            this.y=Canvas.height-this.h -this.ground;
+            this.y=Canvas.configs.height-this.h -this.ground;
         }
-
-        this.draw();
     }
     jump(){
         Canvas.ctx.clearRect(this.x, this.y, this.w, this.h);
