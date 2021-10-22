@@ -6,6 +6,8 @@ import {Brid, Button, Cactus, Cloud, Ground, Player, Score, Label} from '../obje
 
 export class PlayGameScene extends Scene{
     
+    objectList = [];
+    
     scoreText: Score;
     highscoreText: Score;
     score: number;
@@ -42,18 +44,14 @@ export class PlayGameScene extends Scene{
         this.cloud = new Cloud(4000, 2000, 120, 70);
 
         this.gameSpeed = 10;
-    }
 
-    draw(){
-        Canvas.ctx.clearRect(0,0, Canvas.width, Canvas.width);
-        this.scoreText.draw();
-        this.highscoreText.draw();
-        this.player.draw();
-        this.ground.draw();
-
-        this.cactus.draw();
-        this.brid.draw();
-        this.cloud.draw();
+        this.objectList.push(this.scoreText);
+        this.objectList.push(this.highscoreText);
+        this.objectList.push(this.player);
+        this.objectList.push(this.ground);
+        this.objectList.push(this.cactus);
+        this.objectList.push(this.brid);
+        this.objectList.push(this.cloud);
     }
 
     swapCloud(){

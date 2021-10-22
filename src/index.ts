@@ -3,7 +3,8 @@ import { Control } from './Engine/Control';
 import { T_Rex_Game } from './T-Rex-Game/T-Rex-Game';
 import { MainMenuScene, PlayGameScene, GameOverScene } from './T-Rex-Game/scenes/exports';
 
-Canvas.init(<HTMLCanvasElement> document.getElementById('game'));
+let canvas = new Canvas();
+canvas.setup();
 
 let control = new Control();
 control.handleInput();

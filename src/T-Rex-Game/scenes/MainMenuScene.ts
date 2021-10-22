@@ -7,6 +7,8 @@ import {Brid, Button, Cactus, Cloud, Ground, Player, Score, Label} from '../obje
 
 export class MainMenuScene extends Scene{
     
+    objectList = [];
+    
     startText: Label;
 
     highscore: number;
@@ -27,15 +29,12 @@ export class MainMenuScene extends Scene{
         this.highscoreText = new Score("Highscore: " + this.highscore, Canvas.width - 200, 25);
         this.player = new Player(25,Canvas.height - 150,100,100); 
         this.ground = new Ground(0, Canvas.height - 54, Canvas.width, 10);
-    }
 
-    draw(){
-        Canvas.ctx.clearRect(0,0, Canvas.width, Canvas.width);
-        this.startText.draw();
-        this.scoreText.draw();
-        this.highscoreText.draw();
-        this.player.draw();
-        this.ground.draw();
+        this.objectList.push(this.startText);
+        this.objectList.push(this.scoreText);
+        this.objectList.push(this.highscoreText);
+        this.objectList.push(this.player);
+        this.objectList.push(this.ground);
     }
 
     update(time: number, delta: number){

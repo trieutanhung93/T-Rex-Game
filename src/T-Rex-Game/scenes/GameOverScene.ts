@@ -7,6 +7,8 @@ import {Brid, Button, Cactus, Cloud, Ground, Player, Score, Label} from '../obje
 
 export class GameOverScene extends Scene{
 
+    objectList = [];
+    
     gameOverButton: Button;
     gameOverText: Label;
 
@@ -14,12 +16,9 @@ export class GameOverScene extends Scene{
         super();
         this.gameOverText = new Label("Game Over", Canvas.width / 2 + 10, Canvas.height / 2 - 70);
         this.gameOverButton = new Button(Canvas.width / 2 - 50, Canvas.height / 2 - 50, 100, 100);
-    }
 
-    draw(){
-        //console.log("Draw");
-        this.gameOverButton.draw();
-        this.gameOverText.draw();
+        this.objectList.push(this.gameOverButton);
+        this.objectList.push(this.gameOverText);
     }
 
     update(time: number, delta: number){
