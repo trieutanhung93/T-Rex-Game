@@ -5,8 +5,6 @@ import { SceneManager } from "../Engine/SceneManager";
 
 export class T_Rex_Game extends Game{
 
-    lastTime: number;
-
     constructor(config){
         super(config);
     }
@@ -16,16 +14,6 @@ export class T_Rex_Game extends Game{
     }
 
     start(){
-        //console.log("Start");
-        const time = window.performance.now();
-        const delta = window.performance.now() - this.lastTime;
-        this.lastTime = time;
-
-        let scene = SceneManager.currentScene;
-        this.renderer.render(scene);
-        scene.update(time, delta);
-        requestAnimationFrame(() => {
-            this.start();
-        });
+        super.start();
     }
 }

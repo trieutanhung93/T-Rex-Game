@@ -16,8 +16,8 @@ control.handleInput();
 
 let tRexGame = new T_Rex_Game(config);
 console.log("Start");
-tRexGame.addScene(new MainMenuScene);
-tRexGame.addScene(new PlayGameScene);
-tRexGame.addScene(new GameOverScene);
+tRexGame.addScene(new MainMenuScene(config));
+tRexGame.addScene(new PlayGameScene(config));
+tRexGame.addScene(new GameOverScene(config));
 
 tRexGame.start();

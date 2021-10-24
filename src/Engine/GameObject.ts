@@ -1,4 +1,4 @@
-export abstract class GameObject{
+export class GameObject{
     x: number;
     y: number;
     w: number;

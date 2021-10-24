@@ -18,17 +18,17 @@ export class MainMenuScene extends Scene{
     ground: Ground;
     player: Player;
 
-    constructor(){
-        super();
-        this.startText = new Label("PRESS SPACE TO START GAME", Canvas.configs.width / 2 + 45, Canvas.configs.height / 2 - 20);
+    constructor(config){
+        super(config);
+        this.startText = new Label("PRESS SPACE TO START GAME", this.renderer.configs.width / 2 + 45, this.renderer.configs.height / 2 - 20);
         this.scoreText = new Score("Score: 0", 25, 25);
         this.highscore = 0;
         if (localStorage.getItem('highscore')) {
             this.highscore = Number(localStorage.getItem('highscore'));
         }
-        this.highscoreText = new Score("Highscore: " + this.highscore, Canvas.configs.width - 200, 25);
-        this.player = new Player(25,Canvas.configs.height - 150,100,100); 
-        this.ground = new Ground(0, Canvas.configs.height - 54, Canvas.configs.width, 10);
+        this.highscoreText = new Score("Highscore: " + this.highscore, this.renderer.configs.width - 200, 25);
+        this.player = new Player(25,this.renderer.configs.height - 150,100,100); 
+        this.ground = new Ground(0, this.renderer.configs.height - 54, this.renderer.configs.width, 10);
 
         this.objectList.push(this.startText);
         this.objectList.push(this.scoreText);
@@ -40,7 +40,7 @@ export class MainMenuScene extends Scene{
     update(time: number, delta: number){
         if(Control.keys['Space']){
             console.log("Space");
-            SceneManager.currentScene = (new PlayGameScene());
+            SceneManager.currentScene = (new PlayGameScene(this.configs));
         }
     }
 }

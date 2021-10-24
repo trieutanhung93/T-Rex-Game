@@ -7,6 +7,8 @@ export class Game{
     renderer: Canvas;
     configs;
 
+    lastTime: number;
+    
     constructor(configs){
         this.sceneManager = new SceneManager();
         this.configs = configs;
@@ -18,6 +20,15 @@ export class Game{
     }
 
     start(){
+        const time = window.performance.now();
+        const delta = window.performance.now() - this.lastTime;
+        this.lastTime = time;
 
+        let scene = SceneManager.currentScene;
+        this.renderer.render(scene);
+        scene.update(time, delta);
+        requestAnimationFrame(() => {
+            this.start();
+        });
     }
 }

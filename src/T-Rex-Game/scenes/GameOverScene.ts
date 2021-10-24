@@ -12,10 +12,10 @@ export class GameOverScene extends Scene{
     gameOverButton: Button;
     gameOverText: Label;
 
-    constructor(){
-        super();
-        this.gameOverText = new Label("Game Over", Canvas.configs.width / 2 + 10, Canvas.configs.height / 2 - 70);
-        this.gameOverButton = new Button(Canvas.configs.width / 2 - 50, Canvas.configs.height / 2 - 50, 100, 100);
+    constructor(config){
+        super(config);
+        this.gameOverText = new Label("Game Over", this.renderer.configs.height / 2 + 10, this.renderer.configs.height / 2 - 70);
+        this.gameOverButton = new Button(this.renderer.configs.width / 2 - 50, this.renderer.configs.height / 2 - 50, 100, 100);
 
         this.objectList.push(this.gameOverButton);
         this.objectList.push(this.gameOverText);
@@ -24,7 +24,7 @@ export class GameOverScene extends Scene{
     update(time: number, delta: number){
         if(Control.keys['Space']){
             console.log("Space");
-            SceneManager.currentScene = (new PlayGameScene());
+            SceneManager.currentScene = (new PlayGameScene(this.configs));
         }
     }
 }

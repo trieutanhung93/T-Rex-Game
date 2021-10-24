@@ -27,17 +27,17 @@ export class PlayGameScene extends Scene{
     cactus: Cactus;
     obstacles = [];
 
-    constructor(){
-        super();
+    constructor(config){
+        super(config);
         this.scoreText = new Score("Score: 0", 25, 25);
         this.highscore = 0;
         this.score = 0;
         if (localStorage.getItem('highscore')) {
             this.highscore = Number(localStorage.getItem('highscore'));
         }
-        this.highscoreText = new Score("Highscore: " + this.highscore, Canvas.configs.width - 200, 25);
-        this.player = new Player(25,Canvas.configs.height - 150,100,100); 
-        this.ground = new Ground(0, Canvas.configs.height - 54, Canvas.configs.width, 10);
+        this.highscoreText = new Score("Highscore: " + this.highscore, this.renderer.configs.width - 200, 25);
+        this.player = new Player(25, this.renderer.configs.height - 150,100,100); 
+        this.ground = new Ground(0, this.renderer.configs.height - 54, this.renderer.configs.width, 10);
 
         this.cactus = new Cactus(4000, 4000, 50, 120);
         this.brid = new Brid(4000, 4000, 120, 70);
@@ -55,18 +55,18 @@ export class PlayGameScene extends Scene{
     }
 
     swapCloud(){
-        this.cloud = new Cloud(Canvas.configs.width, Canvas.configs.height - 300, 120, 70);
+        this.cloud = new Cloud(this.renderer.configs.width, this.renderer.configs.height - 300, 120, 70);
         this.clouds. push(this.cloud);
     }
 
     swapObstacle(){
         let type: number = this.random(0,2);
         if(type == 0){
-            this.brid = new Brid(Canvas.configs.width + 50, Canvas.configs.height - 200, 120, 70);
+            this.brid = new Brid(this.renderer.configs.width + 50, this.renderer.configs.height - 200, 120, 70);
             this.obstacles.push(this.brid);
         }
         else{
-            this.cactus = new Cactus(Canvas.configs.width + 50, Canvas.configs.height - 170, 50, 120);
+            this.cactus = new Cactus(this.renderer.configs.width + 50, this.renderer.configs.height - 170, 50, 120);
             this.obstacles.push(this.cactus);
         }
     }
@@ -77,7 +77,7 @@ export class PlayGameScene extends Scene{
 
     update(time: number, delta: number){
 
-        Canvas.ctx.clearRect(0, 0, Canvas.configs.width, Canvas.configs.height);
+        this.renderer.ctx.clearRect(0, 0, this.renderer.configs.width, this.renderer.configs.height);
 
         //score;
         this.score ++;
@@ -86,8 +86,8 @@ export class PlayGameScene extends Scene{
             this.highscore = this.score;
             this.highscoreText.t = "Highscore: " + this.highscore;
         }
-        Canvas.renderText(this.scoreText);
-        Canvas.renderText(this.highscoreText);
+        this.renderer.renderText(this.scoreText);
+        this.renderer.renderText(this.highscoreText);
 
         // Spawn clouds and obstacles
         this.spawnTimer --;
@@ -107,7 +107,7 @@ export class PlayGameScene extends Scene{
                 this.clouds.slice(i, 1);
             }
             o.update();
-            Canvas.renderImage(o);
+            this.renderer.renderImage(o);
         }
         for(let i =0; i < this.obstacles.length; i++){
             console.log()
@@ -129,15 +129,15 @@ export class PlayGameScene extends Scene{
                 this.score = 0;
                 this.spawnTimer = this.initialSpawnTimer;
                 this.gameSpeed = 10;
-                SceneManager.currentScene = new GameOverScene();
+                SceneManager.currentScene = new GameOverScene(this.configs);
             }
             o.update();
-            Canvas.renderImage(o);
+            this.renderer.renderImage(o);
         }
 
         this.player.update();
-        Canvas.renderImage(this.player);
-        Canvas.renderImage(this.ground);
+        this.renderer.renderImage(this.player);
+        this.renderer.renderImage(this.ground);
         //this.ground.update();
     }
 }

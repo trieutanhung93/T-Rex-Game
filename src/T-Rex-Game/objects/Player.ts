@@ -61,18 +61,18 @@ export class Player extends ImageObject{
 
         this.y+=this.dy;
 
-        if(this.y + this.h <Canvas.configs.height -this.ground){
+        if(this.y + this.h <innerHeight -this.ground){
             this.dy += this.gravity;
             this.grounded=false;
         }
         else{
             this.dy=0;
             this.grounded=true;
-            this.y=Canvas.configs.height-this.h -this.ground;
+            this.y=innerHeight-this.h -this.ground;
         }
     }
     jump(){
-        Canvas.ctx.clearRect(this.x, this.y, this.w, this.h);
+        //Canvas.ctx.clearRect(this.x, this.y, this.w, this.h);
         if (this.grounded && this.jumpTimer == 0) {
             this.jumpTimer = 1;
             this.dy = -this.jumpForce;
