@@ -5,15 +5,4 @@ import { SceneManager } from "../Engine/SceneManager";
 
 export class T_Rex_Game extends Game{
 
-    constructor(config){
-        super(config);
-    }
-
-    addScene(scene: Scene){
-        super.addScene(scene);
-    }
-
-    start(){
-        super.start();
-    }
 }

@@ -25,8 +25,8 @@ export class Game{
         this.lastTime = time;
 
         let scene = SceneManager.currentScene;
-        this.renderer.render(scene);
         scene.update(time, delta);
+        this.renderer.render(scene);
         requestAnimationFrame(() => {
             this.start();
         });
