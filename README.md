@@ -1,17 +1,15 @@
-# T-Rex Game
+# 🚀 Welcome to your new awesome project!
 
-T-Rex Game with TypeScript
-
-# Building instructions
+This project has been created using **webpack-cli**, you can now run
 
 ```
-npm install
 npm run build
-npx server
 ```
 
-The output will be in ./dist/.
+or
 
-# Web Demo
+```
+yarn build
+```
 
-https://trieutanhung93.github.io/T-Rex-Game/
+to bundle your application

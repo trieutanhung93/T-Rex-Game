@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
     "module": "es6",
     "target": "es5",
-    "rootDir": "./src",
-    "outDir": "./dist"
-  }
+    "allowJs": true
+  },
+  "files": ["src/index.ts"]
 }
