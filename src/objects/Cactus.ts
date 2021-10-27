@@ -1,6 +1,6 @@
 import Phaser = require("phaser");
 
-export class Ground extends Phaser.GameObjects.Image{
+export class Cactus extends Phaser.GameObjects.Image{
 
     body: Phaser.Physics.Arcade.Body;
 
