@@ -1,6 +1,6 @@
 import Phaser = require("phaser");
 
-export class Ground extends Phaser.GameObjects.Image{
+export class Button extends Phaser.GameObjects.Image{
 
     body: Phaser.Physics.Arcade.Body;
 
@@ -11,6 +11,6 @@ export class Ground extends Phaser.GameObjects.Image{
         this.setOrigin(0,0);
         this.scene.add.existing(this);
 
-        this.scene.physics.add.existing(this, true);
+        this.scene.add.existing(this);
     }
 }

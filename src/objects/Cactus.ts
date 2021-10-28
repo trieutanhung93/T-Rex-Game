@@ -9,6 +9,12 @@ export class Cactus extends Phaser.GameObjects.Image{
         
         this.setScale(0.5);
         this.setOrigin(0,0);
+
+        this.scene.physics.world.enable(this);
+        this.body.allowGravity = false;
+        this.body.setVelocityX(-200);
+        this.body.setSize(20, 20);
+
         this.scene.add.existing(this);
     }
 }

@@ -5,8 +5,10 @@ export class Player extends Phaser.GameObjects.Image{
     body: Phaser.Physics.Arcade.Body;
 
     private jumpKey: Phaser.Input.Keyboard.Key;
-    private isDead: boolean;
     private isJump: boolean;
+    private duckKey: Phaser.Input.Keyboard.Key;
+    private isDuck: boolean;
+    private isDead: boolean;
     
     constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame?: string | number){
         super(scene, x, y, texture, frame);
@@ -22,41 +24,46 @@ export class Player extends Phaser.GameObjects.Image{
         // physics
         this.scene.physics.world.enable(this);
         this.body.setGravityY(1000);
-        this.body.setSize(17, 12);
+        this.body.setSize(50, 50);
 
         // input
         this.jumpKey = this.scene.input.keyboard.addKey(
             Phaser.Input.Keyboard.KeyCodes.SPACE
         );
-  
-        this.scene.add.existing(this);
+        this.duckKey = this.scene.input.keyboard.addKey(
+            Phaser.Input.Keyboard.KeyCodes.S
+        );
 
+        this.scene.add.existing(this);
     }
     
     update(){
-        // handle angle change
-        if (this.angle < 30) {
-            this.angle += 2;
-        }
 
         // handle input
+        console.log();
         if (this.jumpKey.isDown && !this.isJump) {
             this.isJump = true;
-            this.body.setVelocityY(-350);
-            this.scene.tweens.add({
-            targets: this,
-            props: { angle: -20 },
-            duration: 150,
-            ease: 'Power0'
-            });
+            this.body.setVelocityY(-500);
         } 
-        else if (this.jumpKey.isUp && this.isJump) {
+        if(this.body.velocity.y == 0){
             this.isJump = false;
         }
 
-        // check if off the screen
-        if (this.y + this.height > this.scene.sys.canvas.height) {
-            this.isDead = true;
+        if(this.duckKey.isDown && !this.isDuck){
+            this.isDuck = true;
+            //this.texture = 'trex-2.png';
         }
+        else if(this.duckKey.isUp && this.isDuck){
+            this.isDuck = false;
+            //this.texture = 'trex-1.png';
+        }
+        console.log(this.isDuck);
+    }
+
+    public getDead(): boolean{
+        return this.isDead;
+    }
+    public setDead(value: boolean): void{
+        this.isDead = value;
     }
 }

@@ -1,4 +1,7 @@
 import Phaser = require("phaser");
+import { Bird } from "../objects/Brid";
+import { Cactus } from "../objects/Cactus";
+import { Cloud } from "../objects/Cloud";
 import { Ground } from "../objects/Ground";
 import { Player } from "../objects/Player";
 
@@ -7,10 +10,15 @@ export class PlayGameScene extends Phaser.Scene{
     private ground: Ground;
     private player: Player;
     
+    private obstacles: Phaser.GameObjects.Group;
+    private timerEvent: Phaser.Time.TimerEvent;
+
     private score: number;
     private scoretext: Phaser.GameObjects.BitmapText;
     private highscore: number;
     private highscoretext: Phaser.GameObjects.BitmapText;
+
+    private cloud: Cloud;
 
     constructor(){
         console.log("PlayGameScene");
@@ -49,15 +57,69 @@ export class PlayGameScene extends Phaser.Scene{
 
         this.scoretext = this.add.bitmapText(25, 20, 'font', "SCORE: "+ this.score,15);
         this.highscoretext = this.add.bitmapText(400, 20, 'font', "HIGH SCORE: "+ this.highscore,15);
+
+        this.obstacles = this.add.group({});
+        this.timerEvent = this.time.addEvent({
+            delay: 1500,
+            callback: this.swapObstacle,
+            callbackScope: this,
+            loop: true
+        })
+
+        this.cloud = new Cloud(this, 650, 200, 'cloud');
+
+        this.physics.add.collider(this.player, this.ground);
     }
 
     update(): void{
-        console.log("PlayGameScene: Update");
-        this.score++;
-        if(this.score > this.highscore){
-            this.highscore = this.score;
+        //console.log("PlayGameScene: Update");
+        if(this.player.getDead()==false){
+            this.score++;
+            if(this.score > this.highscore){
+                this.highscore = this.score;
+            }
+            this.scoretext.text = "SCORE: "+ this.score;
+            this.highscoretext.text = "HIGH SCORE: "+ this.highscore;
+    
+            this.swapCloud();
+
+            this.player.update();
+            
+            this.physics.overlap(
+                this.player,
+                this.obstacles,
+                function(){
+                    this.player.setDead(true);
+                },
+                null,
+                this
+            )
         }
-        this.scoretext.text = "SCORE: "+ this.score;
-        this.highscoretext.text = "HIGH SCORE: "+ this.highscore;
+        else{
+            this.scene.start('GameOverScene');
+        }
+        
+    }
+
+    private swapObstacle(){
+        console.log("swapObstacle");
+        let type = this.random(0,1);
+        if(type == 0){
+            var cactus = new Cactus(this, 650, 310, 'cactus');
+            this.obstacles.add(cactus);
+        }
+        else{
+            var brid = new Bird(this, 650, 290, 'brid');
+            this.obstacles.add(brid);
+        }
+    }
+
+    private swapCloud(){
+        console.log("swapCloud");
+        this.physics.world.wrap(this.cloud);
+    }
+
+    private random(min: number, max: number): number{
+        return Math.round(Math.random()*(max-min)+min);
     }
 }
