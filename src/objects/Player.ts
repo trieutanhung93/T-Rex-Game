@@ -10,6 +10,10 @@ export class Player extends Phaser.GameObjects.Image{
     private isDuck: boolean;
     private isDead: boolean;
     
+    private buttonPress: Phaser.Sound.BaseSound;
+
+    //private cody: Phaser.GameObjects.Sprite;
+
     constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame?: string | number){
         super(scene, x, y, texture, frame);
         
@@ -35,8 +39,13 @@ export class Player extends Phaser.GameObjects.Image{
         );
 
         this.scene.add.existing(this);
+
+        this.buttonPress = this.scene.sound.add('button-press');
+
+        //this.cody = this.scene.add.sprite(x, y, texture);
+        //this.cody.play('run');
     }
-    
+
     update(){
 
         // handle input
@@ -44,6 +53,7 @@ export class Player extends Phaser.GameObjects.Image{
         if (this.jumpKey.isDown && !this.isJump) {
             this.isJump = true;
             this.body.setVelocityY(-500);
+            this.buttonPress.play();
         } 
         if(this.body.velocity.y == 0){
             this.isJump = false;

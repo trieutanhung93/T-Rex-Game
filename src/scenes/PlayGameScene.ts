@@ -20,6 +20,9 @@ export class PlayGameScene extends Phaser.Scene{
 
     private cloud: Cloud;
 
+    //private buttonPress: Phaser.Sound.BaseSound;
+    private hit: Phaser.Sound.BaseSound;
+
     constructor(){
         console.log("PlayGameScene");
         super({
@@ -44,7 +47,17 @@ export class PlayGameScene extends Phaser.Scene{
         this.load.image("button", "assets/sprites/gameOver.png");
         this.load.image("ground", "assets/sprites/ground.png");
 
+        //Load font
         this.load.bitmapFont('font', 'assets/font/font.png', 'assets/font/font.fnt');
+
+        //Load audio
+        this.load.audio('button-press','assets/audio/button-press.mp3');
+        this.load.audio('hit','assets/audio/hit.mp3');
+        this.load.audio('hit','assets/audio/score-reached.mp3');
+
+        //Load sprite
+        this.load.atlas('t-rex', 'assets/sprites/trex.png', 'assets/sprites/trex.json');
+
     }
       
     
@@ -69,6 +82,30 @@ export class PlayGameScene extends Phaser.Scene{
         this.cloud = new Cloud(this, 650, 200, 'cloud');
 
         this.physics.add.collider(this.player, this.ground);
+
+        //this.buttonPress = this.sound.add('button-press');
+        this.hit = this.sound.add('hit');
+
+
+        // Animation set
+        this.anims.create({
+            key: 'run',
+            frames: this.anims.generateFrameNumbers('trex', { frames: [ 0, 1, 2, 3 ] }),
+            frameRate: 8,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('trex', { frames: [ 0, 1, 2, 3 ] }),
+            frameRate: 8,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'duck',
+            frames: this.anims.generateFrameNumbers('trex', { frames: [ 0, 1, 2, 3 ] }),
+            frameRate: 8,
+            repeat: -1
+        });
     }
 
     update(): void{
@@ -96,6 +133,7 @@ export class PlayGameScene extends Phaser.Scene{
             )
         }
         else{
+            this.hit.play();
             this.scene.start('GameOverScene');
         }
         
