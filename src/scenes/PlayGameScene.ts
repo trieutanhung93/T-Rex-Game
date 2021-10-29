@@ -38,10 +38,6 @@ export class PlayGameScene extends Phaser.Scene{
 
     preload() {
         console.log("PlayGameScene: Preload");
-        this.load.image("background", "assets/sprites/background.png");
-        this.load.image("trex-1", "assets/sprites/trex-1.png");
-        this.load.image("trex-2", "assets/sprites/trex-2.png");
-        this.load.image("brid", "assets/sprites/brid.png");
         this.load.image("cactus", "assets/sprites/cactus.png");
         this.load.image("cloud", "assets/sprites/cloud.png");
         this.load.image("button", "assets/sprites/gameOver.png");
@@ -56,17 +52,43 @@ export class PlayGameScene extends Phaser.Scene{
         this.load.audio('hit','assets/audio/score-reached.mp3');
 
         //Load sprite
-        this.load.atlas('t-rex', 'assets/sprites/trex.png', 'assets/sprites/trex.json');
-
+        this.load.spritesheet('trex', 'assets/sprites/t-rex.png', { frameWidth: 115, frameHeight: 90 });
+        this.load.spritesheet('brid', 'assets/sprites/brid.png', { frameWidth: 95, frameHeight: 80 });
     }
       
     
     create(): void{
         console.log("PlayGameScene: Create");
 
+        // Animation set
+        this.anims.create({
+            key: 'run',
+            frames: this.anims.generateFrameNumbers('trex', { frames: [ 0, 1, 2 ] }),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('trex', { frames: [ 0 ] }),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'duck',
+            frames: this.anims.generateFrameNumbers('trex', { frames: [ 3, 4 ] }),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'fly',
+            frames: this.anims.generateFrameNumbers('brid', { frames: [ 0, 1 ] }),
+            frameRate: 4,
+            repeat: -1
+        });
+
         this.ground = new Ground(this, 0, 350, 'ground');
 
-        this.player = new Player(this, 25, 200, 'trex-1');
+        this.player = new Player(this, 25, 200, 'trex');
 
         this.scoretext = this.add.bitmapText(25, 20, 'font', "SCORE: "+ this.score,15);
         this.highscoretext = this.add.bitmapText(400, 20, 'font', "HIGH SCORE: "+ this.highscore,15);
@@ -85,31 +107,9 @@ export class PlayGameScene extends Phaser.Scene{
 
         //this.buttonPress = this.sound.add('button-press');
         this.hit = this.sound.add('hit');
-
-
-        // Animation set
-        this.anims.create({
-            key: 'run',
-            frames: this.anims.generateFrameNumbers('trex', { frames: [ 0, 1, 2, 3 ] }),
-            frameRate: 8,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'idle',
-            frames: this.anims.generateFrameNumbers('trex', { frames: [ 0, 1, 2, 3 ] }),
-            frameRate: 8,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'duck',
-            frames: this.anims.generateFrameNumbers('trex', { frames: [ 0, 1, 2, 3 ] }),
-            frameRate: 8,
-            repeat: -1
-        });
     }
 
     update(): void{
-        //console.log("PlayGameScene: Update");
         if(this.player.getDead()==false){
             this.score++;
             if(this.score > this.highscore){
@@ -140,20 +140,18 @@ export class PlayGameScene extends Phaser.Scene{
     }
 
     private swapObstacle(){
-        console.log("swapObstacle");
         let type = this.random(0,1);
         if(type == 0){
             var cactus = new Cactus(this, 650, 310, 'cactus');
             this.obstacles.add(cactus);
         }
         else{
-            var brid = new Bird(this, 650, 290, 'brid');
+            var brid = new Bird(this, 650, 280, 'brid');
             this.obstacles.add(brid);
         }
     }
 
     private swapCloud(){
-        console.log("swapCloud");
         this.physics.world.wrap(this.cloud);
     }
 

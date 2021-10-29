@@ -1,6 +1,6 @@
 import Phaser = require("phaser");
 
-export class Player extends Phaser.GameObjects.Image{
+export class Player extends Phaser.Physics.Arcade.Sprite{
     
     body: Phaser.Physics.Arcade.Body;
 
@@ -12,11 +12,11 @@ export class Player extends Phaser.GameObjects.Image{
     
     private buttonPress: Phaser.Sound.BaseSound;
 
-    //private cody: Phaser.GameObjects.Sprite;
-
-    constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame?: string | number){
-        super(scene, x, y, texture, frame);
+    constructor(scene: Phaser.Scene, x: number, y: number, texture: string){
         
+        super(scene, x, y, texture);
+        this.play('run');
+
         this.setScale(0.5);
         this.setOrigin(0,0);
         this.scene.add.existing(this);
@@ -28,7 +28,7 @@ export class Player extends Phaser.GameObjects.Image{
         // physics
         this.scene.physics.world.enable(this);
         this.body.setGravityY(1000);
-        this.body.setSize(50, 50);
+        this.body.setSize(0, 0);
 
         // input
         this.jumpKey = this.scene.input.keyboard.addKey(
@@ -41,9 +41,6 @@ export class Player extends Phaser.GameObjects.Image{
         this.scene.add.existing(this);
 
         this.buttonPress = this.scene.sound.add('button-press');
-
-        //this.cody = this.scene.add.sprite(x, y, texture);
-        //this.cody.play('run');
     }
 
     update(){
@@ -54,18 +51,22 @@ export class Player extends Phaser.GameObjects.Image{
             this.isJump = true;
             this.body.setVelocityY(-500);
             this.buttonPress.play();
+            //this.play('idle');
         } 
         if(this.body.velocity.y == 0){
             this.isJump = false;
+            //this.play('run');
         }
 
         if(this.duckKey.isDown && !this.isDuck){
             this.isDuck = true;
-            //this.texture = 'trex-2.png';
+            this.play('duck');
+            this.body.setSize(120, 45);
         }
         else if(this.duckKey.isUp && this.isDuck){
             this.isDuck = false;
-            //this.texture = 'trex-1.png';
+            this.play('run');
+            this.body.setSize(0, 0);
         }
         console.log(this.isDuck);
     }
