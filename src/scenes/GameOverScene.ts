@@ -24,8 +24,6 @@ export class GameOverScene extends Phaser.Scene{
 
     preload(){
         console.log("MainMenuScene: Preload");
-
-        this.load.bitmapFont('font', 'assets/font/font.png', 'assets/font/font.fnt');
     }
 
     create(){

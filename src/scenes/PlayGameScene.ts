@@ -38,22 +38,6 @@ export class PlayGameScene extends Phaser.Scene{
 
     preload() {
         console.log("PlayGameScene: Preload");
-        this.load.image("cactus", "assets/sprites/cactus.png");
-        this.load.image("cloud", "assets/sprites/cloud.png");
-        this.load.image("button", "assets/sprites/gameOver.png");
-        this.load.image("ground", "assets/sprites/ground.png");
-
-        //Load font
-        this.load.bitmapFont('font', 'assets/font/font.png', 'assets/font/font.fnt');
-
-        //Load audio
-        this.load.audio('button-press','assets/audio/button-press.mp3');
-        this.load.audio('hit','assets/audio/hit.mp3');
-        this.load.audio('hit','assets/audio/score-reached.mp3');
-
-        //Load sprite
-        this.load.spritesheet('trex', 'assets/sprites/t-rex.png', { frameWidth: 115, frameHeight: 90 });
-        this.load.spritesheet('brid', 'assets/sprites/brid.png', { frameWidth: 95, frameHeight: 80 });
     }
       
     

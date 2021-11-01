@@ -1,5 +1,6 @@
 import 'phaser';
 import { GameOverScene } from './scenes/GameOverScene';
+import { LoadingScene } from './scenes/LoadingScene';
 import { MainMenuScene } from './scenes/MainMenuScene';
 import { PlayGameScene } from './scenes/PlayGameScene';
 
@@ -17,7 +18,7 @@ var config: Phaser.Types.Core.GameConfig = {
   height: 400,
   type: Phaser.AUTO,
   parent: 'game',
-  scene: [MainMenuScene, PlayGameScene, GameOverScene],
+  scene: [LoadingScene, MainMenuScene, PlayGameScene, GameOverScene],
   input: {
     keyboard: true
   },
