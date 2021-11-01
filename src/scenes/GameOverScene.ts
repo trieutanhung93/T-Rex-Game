@@ -24,13 +24,6 @@ export class GameOverScene extends Phaser.Scene{
 
     preload(){
         console.log("MainMenuScene: Preload");
-        this.load.image('trex-1', 'assets/sprites/trex-1.png');
-        this.load.image('trex-2', 'assets/sprites/trex-2.png');
-        this.load.image('brid', 'assets/sprites/brid.png');
-        this.load.image('cactus', 'assets/sprites/cactus.png');
-        this.load.image('cloud', 'assets/sprites/cloud.png');
-        this.load.image('button', 'assets/sprites/gameOver.png');
-        this.load.image('ground', 'assets/sprites/ground.png');
 
         this.load.bitmapFont('font', 'assets/font/font.png', 'assets/font/font.fnt');
     }
