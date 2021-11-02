@@ -20,6 +20,7 @@ export class PlayGameScene extends Phaser.Scene{
 
     private cloud: Cloud;
 
+    private velocity: number;
     //private buttonPress: Phaser.Sound.BaseSound;
     private hit: Phaser.Sound.BaseSound;
 
@@ -96,6 +97,10 @@ export class PlayGameScene extends Phaser.Scene{
     update(): void{
         if(this.player.getDead()==false){
             this.score++;
+
+            //set velocity
+            this.velocity = 200 + Math.floor(this.score/200)*20;
+
             if(this.score > this.highscore){
                 this.highscore = this.score;
             }
@@ -126,11 +131,12 @@ export class PlayGameScene extends Phaser.Scene{
     private swapObstacle(){
         let type = this.random(0,1);
         if(type == 0){
-            var cactus = new Cactus(this, 650, 310, 'cactus');
+            var cactus = new Cactus(this, 650, 310, 'cactus', this.velocity);
             this.obstacles.add(cactus);
         }
         else{
-            var brid = new Bird(this, 650, 280, 'brid');
+            var height = this.random(250, 280)
+            var brid = new Bird(this, 650, height, 'brid', this.velocity);
             this.obstacles.add(brid);
         }
     }

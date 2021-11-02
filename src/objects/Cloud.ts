@@ -12,8 +12,12 @@ export class Cloud extends Phaser.GameObjects.Image{
         this.scene.physics.world.enable(this);
         this.body.allowGravity = false;
         this.body.setVelocityX(-200);
-        //this.body.setSize(0, 0);
 
+        var scales: number[] = [0.5, 1, 1.25];
+        this.setScale(scales[this.random(0,2)]);
         this.scene.add.existing(this);
+    }
+    private random(min: number, max: number): number{
+        return Math.round(Math.random()*(max-min)+min);
     }
 }

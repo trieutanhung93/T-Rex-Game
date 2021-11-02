@@ -28,7 +28,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite{
         // physics
         this.scene.physics.world.enable(this);
         this.body.setGravityY(1000);
-        this.body.setSize(120, 30);
+        this.body.setSize(0, 0);
 
         // input
         this.jumpKey = this.scene.input.keyboard.addKey(
@@ -51,26 +51,24 @@ export class Player extends Phaser.Physics.Arcade.Sprite{
             this.isJump = true;
             this.body.setVelocityY(-500);
             this.buttonPress.play();
-            //this.play('idle');
         } 
         if(this.body.velocity.y == 0){
             this.isJump = false;
-            //this.play('run');
         }
 
         if(this.duckKey.isDown && !this.isDuck){
             this.isDuck = true;
             this.play('duck');
-            //this.body.setSize(120, 45);
+            this.body.setSize(0, 40);
         }
         else if(this.duckKey.isUp && this.isDuck){
             this.isDuck = false;
             this.play('run');
-            //this.body.setSize(0, 0);
+            this.y -= 20;
+            this.body.setSize(0,0);
         }
         console.log(this.isDuck);
     }
-
     public getDead(): boolean{
         return this.isDead;
     }
