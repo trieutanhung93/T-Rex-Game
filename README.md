@@ -2,10 +2,10 @@
 
 # Branch: gameloop-pattern
 Typescript and webpack
-# # Run:
+## Run:
   npm serve
 
 # Branch: phaser:
 Typescript and webpack and phaser
-# # Run:
+## Run:
   yarn dev
