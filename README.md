@@ -3,7 +3,7 @@
 # Branch: gameloop-pattern
 Typescript and webpack
 ## Run:
-  npm serve
+  npm server
 
 # Branch: phaser:
 Typescript and webpack and phaser
